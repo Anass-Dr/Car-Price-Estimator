@@ -24,4 +24,4 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
     - name: Run Tests
-      run: php artisan serve
+      run: php artisan test
