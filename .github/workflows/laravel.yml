@@ -17,12 +17,12 @@ jobs:
       with:
         php-version: 'latest'
     - uses: actions/checkout@v3
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Setup Laravel
       run: |
         cp .env.example .env
         php artisan key:generate
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run migrations
       run: php artisan migrate --no-interaction
     - name: Execute tests (Unit and Feature tests) via PHPUnit
