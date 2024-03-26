@@ -12,6 +12,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftp://labo-snce.com
+        server: ftp://62.72.37.105
         username: u820736800.anass-actions.coders-strike.tech
         password: Anasnay@2000
