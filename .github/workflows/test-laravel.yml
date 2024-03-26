@@ -23,4 +23,4 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: php artisan tests/Unit
+        run: php artisan test tests/Unit
