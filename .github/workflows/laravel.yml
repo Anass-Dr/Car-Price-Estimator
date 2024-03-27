@@ -12,14 +12,32 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: carpriceestimator
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
         php-version: 'latest'
     - uses: actions/checkout@v3
+    
     - name: Install Dependencies
       run: composer install
-    - name: Install Dependencies
-      run: composer update
+      
+    - name: Setup Laravel
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+
+    - name: Run migrations
+      run: php artisan migrate --no-interaction
+      
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: php artisan test tests/Unit
