@@ -33,6 +33,7 @@ class UserController extends Controller
             'username' => ['string', 'min:3', 'unique:users'],
             'email' => ['string', 'email', 'lowercase', 'unique:users'],
             'password' => ['string'],
+            'role' => ['string'],
         ]);
         $user = User::find($id);
 
